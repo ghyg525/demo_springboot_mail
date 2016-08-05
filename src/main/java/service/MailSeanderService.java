@@ -3,7 +3,7 @@ package service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,8 +15,6 @@ public class MailSeanderService {
 	
 	@Autowired
 	private JavaMailSenderImpl javaMailSender;
-	@Autowired
-	private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 	
 	
 	// 测试目标地址, 可从数据库等获取
@@ -25,31 +23,20 @@ public class MailSeanderService {
 	
 	/**
 	 * 发送邮件
-	 * @author YangJie [2016年2月26日 上午11:57:44]
+	 * @author YangJie [2016年8月5日 下午3:52:34]
+	 * @param subject 主题 
+	 * @param text 邮件内容
+	 * 注意主线程结束后线程池中任务不会继续执行
 	 */
+	@Async // 此注解异步执行在本方法中调用无效, spring会生成动态代理类完成异步调用
 	public void sendMail(String subject, String text){
 		SimpleMailMessage mailMessage = new SimpleMailMessage(); 
 		mailMessage.setFrom(javaMailSender.getUsername());
 		mailMessage.setTo(tos);
 		mailMessage.setSubject(subject);
 		mailMessage.setText(text);
-		sendMail(mailMessage);
+		javaMailSender.send(mailMessage);
+		System.out.println("发送了邮件: "+ subject);
 	}
 	
-	/**
-	 * 发送邮件(异步)
-	 * @author YangJie [2016年2月26日 下午2:58:39]
-	 * @param message
-	 */
-	public void sendMail(final SimpleMailMessage message){
-		// 同步发送
-		javaMailSender.send(message);
-		// 异步发送 > 在web工程中使用线程池(主线程结束后线程池中的任务不执行, 具体原因还未知)
-		threadPoolTaskExecutor.execute(new Runnable() {
-			public void run() {
-				javaMailSender.send(message);
-			}
-		});
-	}
-
 }
