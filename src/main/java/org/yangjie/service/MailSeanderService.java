@@ -20,7 +20,7 @@ public class MailSeanderService {
 	private Logger logger = LoggerFactory.getLogger(MailSeanderService.class);
 	
 	
-	@Value("${mail.to}")
+	@Value("${mail.tos}")
 	private String[] tos;
 	
 	@Autowired
