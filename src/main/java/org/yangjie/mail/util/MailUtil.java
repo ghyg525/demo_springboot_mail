@@ -1,4 +1,4 @@
-package org.yangjie.service;
+package org.yangjie.mail.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,9 +14,9 @@ import org.springframework.stereotype.Service;
  * @author YangJie [2016年2月26日 上午11:52:56]
  */
 @Service
-public class MailSeanderService {
+public class MailUtil {
 	
-	private Logger logger = LoggerFactory.getLogger(MailSeanderService.class);
+	private Logger logger = LoggerFactory.getLogger(MailUtil.class);
 	
 	
 	@Value("${mail.tos}")
@@ -45,18 +44,6 @@ public class MailSeanderService {
 		mailMessage.setText(text);
 		javaMailSender.send(mailMessage);
 		logger.info("发送了邮件: {}", subject);
-	}
-	
-	
-	/**
-	 * 定时执行任务
-	 * @author YangJie [2016年10月11日 下午3:18:17]
-	 */
-	@Scheduled(cron="0 * * * * ?") // 每分
-	public void taskPerHour(){
-		logger.info("开始执行每分钟任务...");
-		this.sendMail("test", "11234");
-		logger.info("每分钟任务执行结束!");
 	}
 	
 }

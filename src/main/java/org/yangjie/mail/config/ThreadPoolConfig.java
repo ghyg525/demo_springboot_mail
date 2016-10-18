@@ -1,4 +1,4 @@
-package org.yangjie.config;
+package org.yangjie.mail.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,6 +6,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * 线程池配置
+ * @author YangJie [2016年10月18日 下午1:19:25]
  */
 @Configuration	// 注解为spring配置java类
 public class ThreadPoolConfig {

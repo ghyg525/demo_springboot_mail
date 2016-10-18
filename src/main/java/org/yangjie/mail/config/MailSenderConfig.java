@@ -1,4 +1,4 @@
-package org.yangjie.config;
+package org.yangjie.mail.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -7,6 +7,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 /**
  * 邮件发送配置
+ * @author YangJie [2016年10月18日 下午1:19:17]
  */
 @Configuration
 public class MailSenderConfig {
