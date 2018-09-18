@@ -1,15 +1,24 @@
-mail: 
-  from: 
-    host: smtp.163.com
+##收件列表
+emails: ghyg525@qq.com, ghyg525@163.com
+
+##发件配置
+spring:
+  mail: 
+    host: smtp.exmail.qq.com
     port: 25
-    username: 
-    password: 
+    username: timer@shijuehulian.cn
+    password: Sjhl@2018
     
-  tos: ghyg525@qq.com,
-       ghyg525@163.com
-
-
-logging:
-  level: 
-    org:
-      springframework: info
+##发件配置SSL
+#spring:
+#  mail: 
+#    host: smtp.exmail.qq.com
+#    username: timer@shijuehulian.cn
+#    password: Sjhl@2018
+#    properties: 
+#      mail: 
+#        smtp: 
+#          auth: true
+#          socketFactory: 
+#            class: javax.net.ssl.SSLSocketFactory
+#            port: 465

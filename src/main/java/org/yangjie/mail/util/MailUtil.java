@@ -19,8 +19,8 @@ public class MailUtil {
 	private Logger logger = LoggerFactory.getLogger(MailUtil.class);
 	
 	
-	@Value("${mail.tos}")
-	private String[] tos;
+	@Value("${emails}")
+	private String[] emails;
 	
 	@Autowired
 	private JavaMailSenderImpl javaMailSender;
@@ -39,7 +39,7 @@ public class MailUtil {
 	public void sendMail(String subject, String text){
 		SimpleMailMessage mailMessage = new SimpleMailMessage(); 
 		mailMessage.setFrom(javaMailSender.getUsername());
-		mailMessage.setTo(tos);
+		mailMessage.setTo(emails);
 		mailMessage.setSubject(subject);
 		mailMessage.setText(text);
 		javaMailSender.send(mailMessage);

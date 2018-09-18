@@ -15,7 +15,7 @@ public class ThreadPoolConfig {
 	public ThreadPoolTaskExecutor initThreadPoolTaskExecutor(){
 		ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
 		threadPoolTaskExecutor.setQueueCapacity(200); 			// 队列容量
-		threadPoolTaskExecutor.setCorePoolSize(5);					// 核心线程数量
+		threadPoolTaskExecutor.setCorePoolSize(5);				// 核心线程数量
 		threadPoolTaskExecutor.setMaxPoolSize(100);				// 最大线程数量
 		threadPoolTaskExecutor.setKeepAliveSeconds(300);		// 允许线程空闲时间  
 		threadPoolTaskExecutor.initialize();		// 重新初始化
